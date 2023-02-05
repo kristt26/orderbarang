@@ -27,9 +27,25 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
+$routes->get('/', 'Home::index');
+$routes->group('barang', function ($routes) {
+    $routes->get('/', 'Admin\Barang::index');
+    $routes->get('read', 'Admin\Barang::read');
+    $routes->post('post', 'Admin\Barang::post');
+    $routes->put('put', 'Admin\Barang::put');
+    $routes->delete('deleted/(:any)', 'Admin\Barang::deleted/$1');
+});
+
+$routes->group('customer', function ($routes) {
+    $routes->get('/', 'Admin\Customer::index');
+    $routes->get('read', 'Admin\Customer::read');
+    $routes->post('post', 'Admin\Customer::post');
+    $routes->put('put', 'Admin\Customer::put');
+    $routes->delete('deleted', 'Admin\Customer::deleted/$1');
+});
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
 
 /*
  * --------------------------------------------------------------------

@@ -1,233 +1,381 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="apps">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
+  <!-- Required meta tags-->
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Material Admin</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="<?= base_url()?>/node_modules/mdi/css/materialdesignicons.min.css">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="<?= base_url()?>/css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="<?= base_url()?>/images/favicon.png" />
+  <meta name="description" content="au theme template">
+  <meta name="author" content="Hau Nguyen">
+  <meta name="keywords" content="au theme template">
+
+  <!-- Title Page-->
+  <title>Forms</title>
+
+  <!-- Fontfaces CSS-->
+  <link href="<?= base_url() ?>/assets/css/font-face.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+  <!-- Bootstrap CSS-->
+  <link href="<?= base_url() ?>/assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+  <!-- Vendor CSS-->
+  <link href="<?= base_url() ?>/assets/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/wow/animate.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/slick/slick.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+  <link href="<?= base_url() ?>/assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+  <!-- Main CSS-->
+  <link href="<?= base_url() ?>/assets/css/theme.css" rel="stylesheet" media="all">
+
+
+
+  <!-- Propeller card (CSS for helping component example file)-->
+  <link href="https://opensource.propeller.in/components/card/css/card.css" type="text/css" rel="stylesheet" />
+
+  <!-- Example docs (CSS for helping component example file)-->
+  <link href="https://opensource.propeller.in/docs/css/example-docs.css" type="text/css" rel="stylesheet" />
+
+  <!-- Propeller typography (CSS for helping component example file) -->
+  <link href="https://opensource.propeller.in/components/typography/css/typography.css" type="text/css" rel="stylesheet" />
+
+  <!-- Google Icon Font -->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="css/google-icons.css" type="text/css" rel="stylesheet" /> -->
+
+  <!-- Propeller Checkbox -->
+  <link href="https://opensource.propeller.in/components/checkbox/css/checkbox.css" type="text/css" rel="stylesheet" />
+
+  <!-- Propeller textfield -->
+  <link href="https://opensource.propeller.in/components/textfield/css/textfield.css" type="text/css" rel="stylesheet" />
+
+  <!-- Propeller Radio -->
+  <link href="https://opensource.propeller.in/components/radio/css/radio.css" type="text/css" rel="stylesheet" />
+
+  <!-- Propeller Toggle -->
+  <link href="https://opensource.propeller.in/components/toggle-switch/css/toggle-switch.css" type="text/css" rel="stylesheet" />
+
+
 </head>
 
-<body>
-  <div class="body-wrapper">
-    <!-- partial:<?= base_url()?>/partials/_sidebar.html -->
-    <aside class="mdc-persistent-drawer mdc-persistent-drawer--open">
-      <nav class="mdc-persistent-drawer__drawer">
-        <div class="mdc-persistent-drawer__toolbar-spacer">
-          <a href="<?= base_url()?>/index.html" class="brand-logo">
-						<img src="<?= base_url()?>/images/logo.svg" alt="logo">
-					</a>
-        </div>
-        <div class="mdc-list-group">
-          <nav class="mdc-list mdc-drawer-menu">
-            <div class="mdc-list-item mdc-drawer-item">
-              <a class="mdc-drawer-link" href="<?= base_url()?>/index.html">
-                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">desktop_mac</i>
-                Dashboard
-              </a>
-            </div>
-            <div class="mdc-list-item mdc-drawer-item">
-              <a class="mdc-drawer-link" href="<?= base_url()?>/pages/forms/basic-forms.html">
-                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">track_changes</i>
-                Forms
-              </a>
-            </div>
-            <div class="mdc-list-item mdc-drawer-item" href="#" data-toggle="expansionPanel" target-panel="ui-sub-menu">
-              <a class="mdc-drawer-link" href="#">
-                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">dashboard</i>
-                UI Features
-                <i class="mdc-drawer-arrow material-icons">arrow_drop_down</i>
-              </a>
-              <div class="mdc-expansion-panel" id="ui-sub-menu">
-                <nav class="mdc-list mdc-drawer-submenu">
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/ui-features/buttons.html">
-                      Buttons
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/ui-features/typography.html">
-                      Typography
-                    </a>
-                  </div>
-                </nav>
-              </div>
-            </div>
-            <div class="mdc-list-item mdc-drawer-item">
-              <a class="mdc-drawer-link" href="<?= base_url()?>/pages/ui-features/tables.html">
-                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">grid_on</i>
-                Tables
-              </a>
-            </div>
-            <div class="mdc-list-item mdc-drawer-item">
-              <a class="mdc-drawer-link" href="<?= base_url()?>/pages/charts/chartjs.html">
-                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">pie_chart_outlined</i>
-                Charts
-              </a>
-            </div>
-            <div class="mdc-list-item mdc-drawer-item" href="#" data-toggle="expansionPanel" target-panel="sample-page-submenu">
-              <a class="mdc-drawer-link" href="#">
-                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">pages</i>
-                Sample Pages
-                <i class="mdc-drawer-arrow material-icons">arrow_drop_down</i>
-              </a>
-              <div class="mdc-expansion-panel" id="sample-page-submenu">
-                <nav class="mdc-list mdc-drawer-submenu">
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/samples/blank-page.html">
-                      Blank Page
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/samples/403.html">
-                      403
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/samples/404.html">
-                      404
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/samples/500.html">
-                      500
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/samples/505.html">
-                      505
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/samples/login.html">
-                      Login
-                    </a>
-                  </div>
-                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-drawer-link" href="<?= base_url()?>/pages/samples/register.html">
-                      Register
-                    </a>
-                  </div>
-
-                </nav>
-              </div>
-            </div>
-            <div class="mdc-list-item mdc-drawer-item purchase-link">
-              <a href="https://www.bootstrapdash.com/product/material-admin/" target="_blank" class="mdc-button mdc-button--raised mdc-button--dense mdc-drawer-link" data-mdc-auto-init="MDCRipple">
-                Upgrade To Pro
-              </a>
-            </div>
-          </nav>
-        </div>
-      </nav>
-    </aside>
-    <!-- partial -->
-    <!-- partial:<?= base_url()?>/partials/_navbar.html -->
-    <header class="mdc-toolbar mdc-elevation--z4 mdc-toolbar--fixed">
-      <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-          <a href="#" class="menu-toggler material-icons mdc-toolbar__menu-icon">menu</a>
-          <span class="mdc-toolbar__input">
-            <div class="mdc-text-field">
-              <input type="text" class="mdc-text-field__input" id="css-only-text-field-box" placeholder="Search anything...">
-            </div>
-          </span>
-        </section>
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
-          <div class="mdc-menu-anchor">
-            <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown" toggle-dropdown="notification-menu" data-mdc-auto-init="MDCRipple">
-              <i class="material-icons">notifications</i>
-              <span class="dropdown-count">3</span>
+<body class="animsition">
+  <div class="page-wrapper">
+    <!-- HEADER MOBILE-->
+    <header class="header-mobile d-block d-lg-none">
+      <div class="header-mobile__bar">
+        <div class="container-fluid">
+          <div class="header-mobile-inner">
+            <a class="logo" href="index.html">
+              <img src="<?= base_url() ?>/assets/images/icon/logo.png" alt="CoolAdmin" />
             </a>
-            <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="notification-menu">
-              <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                <li class="mdc-list-item" role="menuitem" tabindex="0">
-                  <i class="material-icons mdc-theme--primary mr-1">email</i>
-                  One unread message
+            <button class="hamburger hamburger--slider" type="button">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar-mobile">
+        <div class="container-fluid">
+          <ul class="navbar-mobile__list list-unstyled">
+            <li class="has-sub">
+              <a class="js-arrow" href="#">
+                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+              <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                <li>
+                  <a href="index.html">Dashboard 1</a>
                 </li>
-                <li class="mdc-list-item" role="menuitem" tabindex="0">
-                  <i class="material-icons mdc-theme--primary mr-1">group</i>
-                  One event coming up
+                <li>
+                  <a href="index2.html">Dashboard 2</a>
                 </li>
-                <li class="mdc-list-item" role="menuitem" tabindex="0">
-                  <i class="material-icons mdc-theme--primary mr-1">cake</i>
-                  It's Aleena's birthday!
+                <li>
+                  <a href="index3.html">Dashboard 3</a>
+                </li>
+                <li>
+                  <a href="index4.html">Dashboard 4</a>
                 </li>
               </ul>
-            </div>
-          </div>
-          <div class="mdc-menu-anchor">
-            <a href="#" class="mdc-toolbar__icon mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
-              <i class="material-icons">widgets</i>
-            </a>
-          </div>
-          <div class="mdc-menu-anchor mr-1">
-            <a href="#" class="mdc-toolbar__icon toggle mdc-ripple-surface" data-toggle="dropdown" toggle-dropdown="logout-menu" data-mdc-auto-init="MDCRipple">
-              <i class="material-icons">more_vert</i>
-            </a>
-            <div class="mdc-simple-menu mdc-simple-menu--right" tabindex="-1" id="logout-menu">
-                <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                  <li class="mdc-list-item" role="menuitem" tabindex="0">
-                    <i class="material-icons mdc-theme--primary mr-1">settings</i>
-                    Settings
-                  </li>
-                  <li class="mdc-list-item" role="menuitem" tabindex="0">
-                    <i class="material-icons mdc-theme--primary mr-1">power_settings_new</i>
-                    Logout
-                  </li>
-                </ul>
-            </div>
-          </div>
-        </section>
-      </div>
+            </li>
+            <li>
+              <a href="chart.html">
+                <i class="fas fa-chart-bar"></i>Charts</a>
+            </li>
+            <li>
+              <a href="table.html">
+                <i class="fas fa-table"></i>Tables</a>
+            </li>
+            <li>
+              <a href="form.html">
+                <i class="far fa-check-square"></i>Forms</a>
+            </li>
+            <li>
+              <a href="calendar.html">
+                <i class="fas fa-calendar-alt"></i>Calendar</a>
+            </li>
+            <li>
+              <a href="map.html">
+                <i class="fas fa-map-marker-alt"></i>Maps</a>
+            </li>
+            <li class="has-sub">
+              <a class="js-arrow" href="#">
+                <i class="fas fa-copy"></i>Pages</a>
+              <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                <li>
+                  <a href="login.html">Login</a>
+                </li>
+                <li>
+                  <a href="register.html">Register</a>
+                </li>
+                <li>
+                  <a href="forget-pass.html">Forget Password</a>
+                </li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a class="js-arrow" href="#">
+                <i class="fas fa-desktop"></i>UI Elements</a>
+              <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                <li>
+                  <a href="button.html">Button</a>
+                </li>
+                <li>
+                  <a href="badge.html">Badges</a>
+                </li>
+                <li>
+                  <a href="tab.html">Tabs</a>
+                </li>
+                <li>
+                  <a href="card.html">Cards</a>
+                </li>
+                <li>
+                  <a href="alert.html">Alerts</a>
+                </li>
+                <li>
+                  <a href="progress-bar.html">Progress Bars</a>
+                </li>
+                <li>
+                  <a href="modal.html">Modals</a>
+                </li>
+                <li>
+                  <a href="switch.html">Switchs</a>
+                </li>
+                <li>
+                  <a href="grid.html">Grids</a>
+                </li>
+                <li>
+                  <a href="fontawesome.html">Fontawesome Icon</a>
+                </li>
+                <li>
+                  <a href="typo.html">Typography</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
-    <!-- partial -->
-    <div class="page-wrapper mdc-toolbar-fixed-adjust">
-      <main class="content-wrapper">
-        <div class="mdc-layout-grid">
-          <div class="mdc-layout-grid__inner">
-            <?= $this->renderSection('content');?>
+    <!-- END HEADER MOBILE-->
+
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar d-none d-lg-block">
+      <div class="logo">
+        <a href="#">
+          <img src="<?= base_url() ?>/assets/images/icon/logo.png" alt="Cool Admin" />
+        </a>
+      </div>
+      <div class="menu-sidebar__content js-scrollbar1">
+        <nav class="navbar-sidebar">
+          <ul class="list-unstyled navbar__list">
+            <li>
+              <a href="chart.html">
+                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+            </li>
+            <li class="active">
+              <a href="<?= base_url('barang') ?>">
+                <i class="far fa-check-square"></i>Data Barang</a>
+            </li>
+            <li>
+              <a href="<?= base_url('customer') ?>">
+                <i class="fas fa-users"></i>Customer</a>
+            </li>
+            <li>
+              <a href="calendar.html">
+                <i class="fas fa-calendar-alt"></i>Calendar</a>
+            </li>
+            <li>
+              <a href="map.html">
+                <i class="fas fa-map-marker-alt"></i>Maps</a>
+            </li>
+            <li class="has-sub">
+              <a class="js-arrow" href="#">
+                <i class="fas fa-copy"></i>Pages</a>
+              <ul class="list-unstyled navbar__sub-list js-sub-list">
+                <li>
+                  <a href="login.html">Login</a>
+                </li>
+                <li>
+                  <a href="register.html">Register</a>
+                </li>
+                <li>
+                  <a href="forget-pass.html">Forget Password</a>
+                </li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a class="js-arrow" href="#">
+                <i class="fas fa-desktop"></i>UI Elements</a>
+              <ul class="list-unstyled navbar__sub-list js-sub-list">
+                <li>
+                  <a href="button.html">Button</a>
+                </li>
+                <li>
+                  <a href="badge.html">Badges</a>
+                </li>
+                <li>
+                  <a href="tab.html">Tabs</a>
+                </li>
+                <li>
+                  <a href="card.html">Cards</a>
+                </li>
+                <li>
+                  <a href="alert.html">Alerts</a>
+                </li>
+                <li>
+                  <a href="progress-bar.html">Progress Bars</a>
+                </li>
+                <li>
+                  <a href="modal.html">Modals</a>
+                </li>
+                <li>
+                  <a href="switch.html">Switchs</a>
+                </li>
+                <li>
+                  <a href="grid.html">Grids</a>
+                </li>
+                <li>
+                  <a href="fontawesome.html">Fontawesome Icon</a>
+                </li>
+                <li>
+                  <a href="typo.html">Typography</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+    <!-- END MENU SIDEBAR-->
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
+      <!-- HEADER DESKTOP-->
+      <header class="header-desktop">
+        <div class="section__content section__content--p30">
+          <div class="container-fluid">
+            <div class="header-wrap">
+              &nbsp;
+              <div class="header-button">
+                <div class="account-wrap">
+                  <div class="account-item clearfix js-item-menu">
+                    <div class="content">
+                      <a class="js-acc-btn" href="#">john doe</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
-      <!-- partial:<?= base_url()?>/partials/_footer.html -->
-      <footer>
-        <div class="mdc-layout-grid">
-          <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-              <span class="text-muted">Copyright © 2018 <a class="text-green" href="https://www.bootstrapdash.com/" target="_blank">Bootstrap Dash</a>. All rights reserved.</span>
-            </div>
-            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6 d-flex justify-content-end">
-              <span class="mt-0 text-right">Hand-crafted &amp; made with <i class="mdi mdi-heart text-red"></i></span>
-            </div>
+      </header>
+      <!-- HEADER DESKTOP-->
+
+      <!-- MAIN CONTENT-->
+      <div class="main-content">
+        <div class="section__content section__content--p30">
+          <div class="container-fluid">
+            <?= $this->renderSection('content'); ?>
+            
           </div>
         </div>
-      </footer>
-      <!-- partial -->
+      </div>
     </div>
   </div>
-  <!-- body wrapper -->
-  <!-- plugins:js -->
-  <script src="<?= base_url()?>/node_modules/material-components-web/dist/material-components-web.min.js"></script>
-  <script src="<?= base_url()?>/node_modules/jquery/dist/jquery.min.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="<?= base_url()?>/js/misc.js"></script>
-  <script src="<?= base_url()?>/js/material.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <!-- End custom js for this page-->
+
+
+  </div>
+
+  <!-- Jquery JS-->
+  <script src="<?= base_url() ?>/assets/vendor/jquery-3.2.1.min.js"></script>
+
+  <script src="<?= base_url() ?>/libs/angular/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.8.2/angular-sanitize.min.js" integrity="sha512-JkCv2gG5E746DSy2JQlYUJUcw9mT0vyre2KxE2ZuDjNfqG90Bi7GhcHUjLQ2VIAF1QVsY5JMwA1+bjjU5Omabw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.30/angular-ui-router.min.js" integrity="sha512-HdDqpFK+5KwK5gZTuViiNt6aw/dBc3d0pUArax73z0fYN8UXiSozGNTo3MFx4pwbBPldf5gaMUq/EqposBQyWQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.8.2/angular-animate.min.js" integrity="sha512-jZoujmRqSbKvkVDG+hf84/X11/j5TVxwBrcQSKp1W+A/fMxmYzOAVw+YaOf3tWzG/SjEAbam7KqHMORlsdF/eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="<?= base_url() ?>/js/apps.js"></script>
+  <script src="<?= base_url() ?>/js/services/helper.services.js"></script>
+  <script src="<?= base_url() ?>/js/services/auth.services.js"></script>
+  <script src="<?= base_url() ?>/js/services/admin.services.js"></script>
+  <script src="<?= base_url() ?>/js/services/pesan.services.js"></script>
+  <script src="<?= base_url() ?>/js/controllers/admin.controllers.js"></script>
+  <script src="<?= base_url() ?>/js/components/components.js"></script>
+  <!-- <script src="<?= base_url() ?>/libs/sweetalert2/dist/sweetalert2.all.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- <script src="<?= base_url() ?>/libs/select2/select2.min.js"></script> -->
+  <script src="<?= base_url() ?>/libs/angular-ui-select2/src/select2.js"></script>
+  <script src="<?= base_url() ?>/libs/angular-datatables/dist/angular-datatables.js"></script>
+  <script src="<?= base_url() ?>/libs/angular-locale_id-id.js"></script>
+  <script src="<?= base_url() ?>/libs/input-mask/angular-input-masks-standalone.min.js"></script>
+  <script src="<?= base_url() ?>/libs/jquery.PrintArea.js"></script>
+  <script src="<?= base_url() ?>/libs/angular-base64-upload/dist/angular-base64-upload.min.js"></script>
+  <script src="<?= base_url() ?>/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="<?= base_url() ?>/libs/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url() ?>/libs/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="<?= base_url() ?>/libs/datatables/dataTables.responsive.min.js"></script>
+  <script src="<?= base_url() ?>/libs/datatables/btn.js"></script>
+  <script src="<?= base_url() ?>/libs/datatables/print.js"></script>
+  <script src="<?= base_url() ?>/libs/loading/dist/loadingoverlay.min.js"></script>
+  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+  <!-- Bootstrap JS-->
+  <script src="<?= base_url() ?>/assets/vendor/bootstrap-4.1/popper.min.js"></script>
+  <script src="<?= base_url() ?>/assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+  <!-- Vendor JS       -->
+  <script src="<?= base_url() ?>/assets/vendor/slick/slick.min.js">
+  </script>
+  <script src="<?= base_url() ?>/assets/vendor/wow/wow.min.js"></script>
+  <script src="<?= base_url() ?>/assets/vendor/animsition/animsition.min.js"></script>
+  <script src="<?= base_url() ?>/assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+  </script>
+  <script src="<?= base_url() ?>/assets/vendor/counter-up/jquery.waypoints.min.js"></script>
+  <script src="<?= base_url() ?>/assets/vendor/counter-up/jquery.counterup.min.js">
+  </script>
+  <script src="<?= base_url() ?>/assets/vendor/circle-progress/circle-progress.min.js"></script>
+  <script src="<?= base_url() ?>/assets/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+  <script src="<?= base_url() ?>/assets/vendor/chartjs/Chart.bundle.min.js"></script>
+  <script src="<?= base_url() ?>/assets/vendor/select2/select2.min.js">
+  </script>
+
+  <!-- Main JS-->
+  <script src="<?= base_url() ?>/assets/js/main.js"></script>
+
+  <!-- Propeller Global js -->
+  <script src="https://opensource.propeller.in/components/global/js/global.js"></script>
+
+  <!-- Propeller checkbox js -->
+  <script type="text/javascript" src="https://opensource.propeller.in/components/checkbox/js/checkbox.js"></script>
+
+  <!-- Propeller checkbox js -->
+  <script type="text/javascript" src="https://opensource.propeller.in/components/textfield/js/textfield.js"></script>
+
+  <!-- Propeller checkbox js -->
+  <script type="text/javascript" src="https://opensource.propeller.in/components/radio/js/radio.js"></script>
+
 </body>
 
 </html>
+<!-- end document-->
