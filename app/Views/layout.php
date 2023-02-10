@@ -198,16 +198,20 @@
           <ul class="list-unstyled navbar__list">
             <li>
               <a href="chart.html">
-                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                <i class="fa fa-tachometer"></i>Dashboard</a>
             </li>
             <?php if (session()->get('role') == "Admin") : ?>
               <li class="active">
                 <a href="<?= base_url('barang') ?>">
-                  <i class="fas fa-box"></i>Data Barang</a>
+                  <i class="fa fa-archive"></i>Data Barang</a>
               </li>
               <li>
                 <a href="<?= base_url('customer') ?>">
-                  <i class="fas fa-users"></i>Customer</a>
+                  <i class="fa fa-users"></i>Customer</a>
+              </li>
+              <li>
+                <a href="<?= base_url('pesanan') ?>">
+                <i class="fa fa-cubes"></i>Pesanan</a>
               </li>
             <?php endif; ?>
             <?php if (session()->get('role') == "Customer") : ?>
@@ -219,7 +223,7 @@
             <?php endif; ?>
             <li>
               <a href="<?= base_url('logout') ?>">
-                <i class="fas fa-sign-out-alt"></i>Logout</a>
+                <i class="fa fa-sign-out"></i>Logout</a>
             </li>
           </ul>
         </nav>

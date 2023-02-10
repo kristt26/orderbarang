@@ -21,6 +21,7 @@ class Order extends BaseController
         $this->detail = new \App\Models\DetailModel();
         $this->pengiriman = new \App\Models\PengirimanModel();
         $this->db = \Config\Database::connect();
+        helper("find");
     }
     public function index()
     {
@@ -43,9 +44,10 @@ class Order extends BaseController
     public function post()
     {
         $data = $this->request->getJSON();
-        $data->customer_id = session()->get('customer_id');
-        $data->status = "Order";
+        $data->kode_pesan = random_string();
         try {
+            $data->customer_id = session()->get('customer_id');
+            $data->status = "Order";
             $this->db->transException(true)->transStart();
             $this->pesanan->insert($data);
             $data->id = $this->pesanan->getInsertID();
@@ -56,7 +58,7 @@ class Order extends BaseController
             }
             $this->db->transComplete();
             return $this->respond($data);
-        } catch (DatabaseException $th) {
+        } catch (\Exception $th) {
             return $this->fail($th->getMessage());
         }
     }

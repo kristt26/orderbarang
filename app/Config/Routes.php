@@ -49,6 +49,15 @@ $routes->group('customer', function ($routes) {
     $routes->delete('deleted', 'Admin\Customer::deleted/$1');
 });
 
+$routes->group('pesanan', function ($routes) {
+    $routes->get('/', 'Admin\Pesanan::index');
+    $routes->get('read', 'Admin\Pesanan::read');
+    $routes->post('post', 'Admin\Pesanan::post');
+    $routes->put('put', 'Admin\Pesanan::put');
+    $routes->delete('deleted', 'Admin\Pesanan::deleted/$1');
+    $routes->get('cetak_manifest/(:any)', 'Admin\Pesanan::cetak_manifest/$1');
+});
+
 $routes->group('order', function ($routes) {
     $routes->get('/', 'Order::index');
     $routes->get('read', 'Order::read');
