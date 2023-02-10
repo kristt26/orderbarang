@@ -23,7 +23,7 @@
                                     <th>Pemilik</th>
                                     <th>Telepon</th>
                                     <th>Email</th>
-                                    <th>Alamat</th>
+                                    <th style="width: 25%;">Alamat</th>
                                     <th>Username</th>
                                     <th><i class="fas fa-cogs"></i></th>
                                 </tr>

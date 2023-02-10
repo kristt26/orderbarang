@@ -12,7 +12,8 @@ class Customer extends BaseController
     protected $customer;
     protected $user;
     protected $conn;
-    public function __construct() {
+    public function __construct()
+    {
         $this->customer = new \App\Models\CustomerModel();
         $this->user = new \App\Models\UserModel();
         $this->conn = \Config\Database::connect();
@@ -24,16 +25,16 @@ class Customer extends BaseController
     public function read()
     {
         return $this->respond($this->customer->select("customer.*, user.username, user.role")
-        ->join("user", "user.id=customer.user_id", "LEFT")
-        ->findAll());
+            ->join("user", "user.id=customer.user_id", "LEFT")
+            ->findAll());
     }
-    
+
     public function post()
     {
         $data = $this->request->getJSON();
         try {
             $this->conn->transException(true)->transStart();
-            $this->user->insert(['username'=>$data->username, 'password'=>password_hash($data->password, PASSWORD_DEFAULT)]);
+            $this->user->insert(['username' => $data->username, 'password' => password_hash($data->password, PASSWORD_DEFAULT), "role" => $data->role]);
             $data->user_id = $this->user->getInsertID();
             $this->customer->insert($data);
             $data->id = $this->customer->getInsertID();
@@ -47,11 +48,10 @@ class Customer extends BaseController
     {
         $data = $this->request->getJSON();
         try {
-            if($this->customer->update($data->id, $data)){
+            if ($this->customer->update($data->id, $data)) {
                 return $this->respondUpdated(true);
             }
             throw new \Exception("Gagal mengubah data", 1);
-            
         } catch (\Throwable $th) {
             return $this->fail($th->getMessage());
         }
@@ -59,12 +59,10 @@ class Customer extends BaseController
     public function deleted($id = null)
     {
         try {
-            if($this->customer->delete($id));
-            {
+            if ($this->customer->delete($id)); {
                 return $this->respondDeleted(true);
             }
             throw new \Exception("Gagal menghapus data", 1);
-            
         } catch (\Throwable $th) {
             return $this->fail($th->getMessage());
         }

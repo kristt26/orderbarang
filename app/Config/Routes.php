@@ -11,7 +11,7 @@ $routes = Services::routes();
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Auth');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -27,7 +27,12 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
-$routes->get('/', 'Home::index');
+$routes->get('home', 'Home::index');
+$routes->group('/', function ($routes) {
+    $routes->get('', 'Auth::index');
+    $routes->post('login', 'Auth::login');
+    $routes->get('logout', 'Auth::logout');
+});
 $routes->group('barang', function ($routes) {
     $routes->get('/', 'Admin\Barang::index');
     $routes->get('read', 'Admin\Barang::read');
@@ -42,6 +47,14 @@ $routes->group('customer', function ($routes) {
     $routes->post('post', 'Admin\Customer::post');
     $routes->put('put', 'Admin\Customer::put');
     $routes->delete('deleted', 'Admin\Customer::deleted/$1');
+});
+
+$routes->group('order', function ($routes) {
+    $routes->get('/', 'Order::index');
+    $routes->get('read', 'Order::read');
+    $routes->post('post', 'Order::post');
+    $routes->put('put', 'Order::put');
+    $routes->delete('deleted', 'Order::deleted/$1');
 });
 
 // We get a performance increase by specifying the default
