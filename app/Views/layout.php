@@ -10,7 +10,7 @@
   <meta name="keywords" content="au theme template">
 
   <!-- Title Page-->
-  <title>Forms</title>
+  <title>MULTI MANDIRI</title>
 
   <!-- Fontfaces CSS-->
   <link href="<?= base_url() ?>/assets/css/font-face.css" rel="stylesheet" media="all">
@@ -75,7 +75,7 @@
         <div class="container-fluid">
           <div class="header-mobile-inner">
             <a class="logo" href="index.html">
-              <img src="<?= base_url() ?>/assets/images/icon/logo.png" alt="CoolAdmin" />
+              <img src="<?= base_url() ?>/assets/images/logo1.png" alt="CoolAdmin" />
             </a>
             <button class="hamburger hamburger--slider" type="button">
               <span class="hamburger-box">
@@ -190,14 +190,14 @@
     <aside class="menu-sidebar d-none d-lg-block">
       <div class="logo">
         <a href="#">
-          <img src="<?= base_url() ?>/assets/images/icon/logo.png" alt="Cool Admin" />
+          <img src="<?= base_url() ?>/assets/images/logo1.png" alt="Cool Admin" width="90%" />
         </a>
       </div>
       <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
           <ul class="list-unstyled navbar__list">
             <li>
-              <a href="chart.html">
+              <a href="<?= base_url() ?>">
                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
             </li>
             <?php if (session()->get('role') == "Admin") : ?>
@@ -239,7 +239,7 @@
                 <div class="account-wrap">
                   <div class="account-item clearfix js-item-menu">
                     <div class="content">
-                      <a class="js-acc-btn" href="#">john doe</a>
+                      <a class="js-acc-btn" href="#"><?= session()->get('role') == 'Admin' ? 'Administrator' : session()->get('nama') ?></a>
                     </div>
                   </div>
                 </div>

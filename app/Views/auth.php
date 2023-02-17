@@ -43,7 +43,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="<?= base_url() ?>/assets/images/icon/logo.png" alt="CoolAdmin">
+                                <img src="<?= base_url() ?>/assets/images/logo1.png" alt="CoolAdmin" width="50%">
                             </a>
                         </div>
                         <div class="login-form">
