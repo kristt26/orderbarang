@@ -201,7 +201,15 @@
                 <i class="fa fa-tachometer"></i>Dashboard</a>
             </li>
             <?php if (session()->get('role') == "Admin") : ?>
-              <li class="active">
+              <li>
+                <a href="<?= base_url('supplier') ?>">
+                  <i class="fa fa-archive"></i>Supplier</a>
+              </li>
+              <li>
+                <a href="<?= base_url('pegawai') ?>">
+                  <i class="fa fa-user"></i>Pegawai</a>
+              </li>
+              <li>
                 <a href="<?= base_url('barang') ?>">
                   <i class="fa fa-archive"></i>Data Barang</a>
               </li>
@@ -212,6 +220,13 @@
               <li>
                 <a href="<?= base_url('pesanan') ?>">
                 <i class="fa fa-cubes"></i>Pesanan</a>
+              </li>
+            <?php endif; ?>
+            <?php if (session()->get('role') == "Gudang") : ?>
+
+              <li>
+                <a href="<?= base_url('pembelian') ?>">
+                  <i class="fas fa-shopping-cart"></i>Pembelian</a>
               </li>
             <?php endif; ?>
             <?php if (session()->get('role') == "Customer") : ?>

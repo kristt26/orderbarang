@@ -8,16 +8,20 @@ class Auth extends BaseController
 {
     use ResponseTrait;
     protected $user;
+    protected $pegawai;
     protected $customer;
     public function __construct()
     {
         $this->user = new \App\Models\UserModel();
+        $this->pegawai = new \App\Models\PegawaiModel();
         $this->customer = new \App\Models\CustomerModel();
     }
     public function index()
     {
         if ($this->user->countAllResults() == 0) {
             $this->user->insert(['username' => 'Administrator', 'password' => password_hash('Administrator#1', PASSWORD_DEFAULT), 'role' => 'Admin']);
+            $user_id = $this->user->getInsertID();
+            $this->pegawai->insert(['user_id'=>$user_id, 'nama'=>'Administrator']);
         }
         if (session()->get('isLogin')) {
             return redirect()->to(base_url('home'));
@@ -30,17 +34,7 @@ class Auth extends BaseController
         $user = $this->user->where('username', $data->username)->first();
         if ($user) {
             if (password_verify($data->password, $user['password'])) {
-                if ($user['role'] == "Admin") {
-                    $dataSession = [
-                        'uid' => $user['id'],
-                        'nama' => 'Administrator',
-                        'username' => $user['username'],
-                        'role' => $user['role'],
-                        'isLogin' => true
-                    ];
-                    session()->set($dataSession);
-                    return $this->respond($dataSession);
-                } else {
+                if ($user['role'] == "Customer") {
                     $customer = $this->customer->where('user_id', $user['id'])->first();
                     $dataSession = [
                         'uid' => $user['id'],
@@ -49,6 +43,17 @@ class Auth extends BaseController
                         'pemilik' => $customer['pemilik'],
                         'kontak' => $customer['telp'],
                         'email' => $customer['email'],
+                        'username' => $user['username'],
+                        'role' => $user['role'],
+                        'isLogin' => true
+                    ];
+                    session()->set($dataSession);
+                    return $this->respond($dataSession);
+                } else {
+                    $pegawai = $this->pegawai->where('user_id', $user['id'])->first();
+                    $dataSession = [
+                        'uid' => $user['id'],
+                        'nama' => $pegawai['nama'],
                         'username' => $user['username'],
                         'role' => $user['role'],
                         'isLogin' => true

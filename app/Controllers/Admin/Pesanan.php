@@ -14,6 +14,7 @@ class Pesanan extends BaseController
     protected $pesanan;
     protected $detail;
     protected $pengiriman;
+    protected $pembyaran;
     protected $db;
     public function __construct()
     {
@@ -21,6 +22,7 @@ class Pesanan extends BaseController
         $this->pesanan = new \App\Models\PesananModel();
         $this->detail = new \App\Models\DetailModel();
         $this->pengiriman = new \App\Models\PengirimanModel();
+        $this->pembyaran = new \App\Models\BayarModel();
         $this->db = \Config\Database::connect();
         
     }
@@ -36,8 +38,9 @@ class Pesanan extends BaseController
         ->join('customer', 'customer.id=pesanan.customer_id', 'left')
         ->findAll();
         foreach ($pesanan as $key => $value) {
-            $value->detail = $this->detail->select('barang.nama, detail.*')->join('barang','barang.id=detail.barang_id', 'left')->where('pesanan_id', $value->id)->findAll();
+            $value->detail = $this->detail->select('barang.nama, barang.harga, detail.*')->join('barang','barang.id=detail.barang_id', 'left')->where('pesanan_id', $value->id)->findAll();
             $value->pengiriman = $this->pengiriman->where('pesanan_id', $value->id)->first();
+            $value->pembayaran = $this->pembyaran->where('pesanan_id', $value->id)->first();
         }
         return $this->respond($pesanan);
     }
@@ -70,6 +73,21 @@ class Pesanan extends BaseController
         }
     }
 
+    public function validasi()
+    {
+        $data = $this->request->getJSON();
+        try {
+            $this->db->transException(true)->transStart();
+            $this->pesanan->update($data->id, ['status'=>'Packing']);
+            $this->pembyaran->update($data->pembayaran->id, ['status'=>'1']);
+            $this->db->transComplete();
+            return $this->respondUpdated(true);
+        } catch (DataException $th) {
+            return $this->fail($th->getMessage());
+        }
+    }
+    
+
     public function cetak_manifest($id = null)
     {
         $pesanan = $this->pesanan->asObject()
@@ -77,7 +95,7 @@ class Pesanan extends BaseController
         ->join('customer', 'customer.id=pesanan.customer_id', 'left')
         ->where('pesanan.id', $id)
         ->first();
-        $pesanan->detail = $this->detail->select('barang.nama, detail.*')->join('barang','barang.id=detail.barang_id', 'left')->where('pesanan_id', $pesanan->id)->findAll();
+        $pesanan->detail = $this->detail->select('barang.nama, barang.harga, detail.*')->join('barang','barang.id=detail.barang_id', 'left')->where('pesanan_id', $pesanan->id)->findAll();
         $pesanan->pengiriman = $this->pengiriman->where('pesanan_id', $pesanan->id)->first();
         $data = (array) $pesanan;
         return view("admin/cetak_manifest", $data);

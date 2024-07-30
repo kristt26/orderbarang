@@ -14,5 +14,5 @@ class BarangModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode', 'nama'];
+    protected $allowedFields    = ['kode', 'nama', 'volume', 'harga', 'stok'];
 }

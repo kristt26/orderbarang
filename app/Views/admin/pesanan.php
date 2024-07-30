@@ -42,8 +42,7 @@
                                                 <td><a href="" data-toggle="modal" data-target="#detail" ng-click="setDetail(item)">Detail</a></td>
                                                 <td>{{item.status}}</td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#setStatus" ng-click="setStatus(item)"><i class="fa fa-edit" aria-hidden="true"></i></button>
-                                                    <!-- <button class="btn btn-sm btn-primary"><i class="far fa-copy"></i></button> -->
+                                                    <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#pembayaran" ng-click="setStatus(item)"><i class="fa fa-edit" aria-hidden="true"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -245,6 +244,63 @@
                     <button type="buton" class="btn btn-secondary pmd-ripple-effect btn-sm" data-dismiss="modal">Tutup</button>
 
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="pembayaran" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-cart-arrow-down"></i> Pembayaran</h3>
+                </div>
+                <form name="form" ng-submit="validasi()">
+                    <div class="modal-body">
+                        <div class="form-group pmd-textfield">
+                            <label>Nomor Pesanan</label>
+                            <input type="text" class="form-control" readonly disabled ng-model="model.kode_pesan" required disabled>
+                        </div>
+                        <div class="form-group pmd-textfield">
+                            <label>Tanggal Order</label>
+                            <input type="date" class="form-control" readonly disabled ng-model="model.tanggal_pesan" required disabled>
+                        </div>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Barang</th>
+                                    <th>Harga</th>
+                                    <th>Qty</th>
+                                    <th>Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in model.detail">
+                                    <td>{{item.nama}}</td>
+                                    <td>{{item.harga | currency: 'Rp. '}}</td>
+                                    <td>{{item.qty}}</td>
+                                    <td>{{item.qty*item.harga | currency: 'Rp. '}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3">Total</td>
+                                    <td>{{model.tagihan | currency:'Rp. '}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="form-group pmd-textfield mt-4">
+                            <label>Nominal Bayar</label>
+                            <input type="text" class="form-control" readonly disabled ng-model="model.pembayaran.nominal" required>
+                        </div>
+                        <div class="form-group pmd-textfield">
+                            <img ng-src="berkas/{{model.pembayaran.file}}" width="50%" alt="{{model.pembayaran.file}}"/>
+                            <!-- <a href="/berkas/{{model.pembayaran.file}}" target="_blank">{{model.pembayaran.file}}</a> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary pmd-ripple-effect btn-sm"><i class="fas fa-dollar-sign"></i> Validasi</button>
+                        <button type="buton" class="btn btn-secondary pmd-ripple-effect btn-sm" data-dismiss="modal">Tutup</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

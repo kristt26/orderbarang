@@ -13,6 +13,7 @@ class Order extends BaseController
     protected $pesanan;
     protected $detail;
     protected $pengiriman;
+    protected $pembayaran;
     protected $db;
     public function __construct()
     {
@@ -20,6 +21,7 @@ class Order extends BaseController
         $this->pesanan = new \App\Models\PesananModel();
         $this->detail = new \App\Models\DetailModel();
         $this->pengiriman = new \App\Models\PengirimanModel();
+        $this->pembayaran = new \App\Models\BayarModel();
         $this->db = \Config\Database::connect();
         helper("find");
     }
@@ -31,8 +33,9 @@ class Order extends BaseController
     {
         $order = $this->pesanan->asObject()->where('customer_id', session()->get('customer_id'))->findAll();
         foreach ($order as $key => $value) {
-            $value->detail = $this->detail->select("detail.*, barang.nama")->join("barang", "detail.barang_id=barang.id", 'left')->where('detail.pesanan_id', $value->id)->findAll();
+            $value->detail = $this->detail->select("detail.*, barang.nama, barang.harga")->join("barang", "detail.barang_id=barang.id", 'left')->where('detail.pesanan_id', $value->id)->findAll();
             $value->pengiriman = $this->pengiriman->where('pesanan_id', $value->id)->first();
+            $value->pembayaran = $this->pembayaran->where('pesanan_id', $value->id)->first();
         }
         $data = [
             'barang' => $this->barang->findAll(),
@@ -55,6 +58,8 @@ class Order extends BaseController
                 $value->pesanan_id = $data->id;
                 $this->detail->insert($value);
                 $value->id = $this->detail->getInsertID();
+                $barang = $this->barang->where('id', $value->barang_id)->first();
+                $this->barang->update($barang->id, ['stok'=>$barang->stok - $value->qty]);
             }
             $this->db->transComplete();
             return $this->respond($data);
@@ -62,9 +67,21 @@ class Order extends BaseController
             return $this->fail($th->getMessage());
         }
     }
-    public function put()
+    public function bayar()
     {
-        //
+        $dec = new \App\Libraries\Decode();
+        $data = $this->request->getJSON();
+        try {
+            $data->kode_bayar = $dec->random_strings();
+            $data->file = $dec->decodebase64($data->berkas->base64);
+            $object = new \App\Models\BayarModel();
+            $object->insert($data);
+            $data->id = $object->getInsertID();
+            return $this->respond($data);
+        } catch (\Throwable $th) {
+            return $this->fail($th->getMessage());
+        }
+
     }
     public function deleted()
     {

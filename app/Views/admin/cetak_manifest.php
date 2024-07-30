@@ -73,7 +73,9 @@
                     <tr class="border thick">
                         <th class="text-center">No</th>
                         <th class="text-center">Barang</th>
+                        <th class="text-center">Harga Satuan</th>
                         <th class="text-center">Qty</th>
+                        <th class="text-center">Jumlah</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,10 +83,18 @@
                         <tr>
                             <td><?= $key + 1 ?></td>
                             <td><?= $value['nama'] ?></td>
+                            <td><?= "Rp. ".number_format($value['harga'], 2, ',', '.') ?></td>
                             <td><?= $value['qty'] ?></td>
+                            <td><?= "Rp. ".number_format(($value['harga']*$value['qty']), 2, ',', '.') ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td><?= "Rp. ".number_format($tagihan, 2, ',', '.')?></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <div class="col-12 mb-3">
@@ -94,7 +104,6 @@
                         <tr style="height:10px">
                             <td width="30%" style="padding:0px !important" class="text-center">Pengirim</td>
                         </tr>
-        
                     </table>
                 </div>
                 <div class="col-3">
