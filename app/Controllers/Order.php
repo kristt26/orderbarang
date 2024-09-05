@@ -23,7 +23,6 @@ class Order extends BaseController
         $this->pengiriman = new \App\Models\PengirimanModel();
         $this->pembayaran = new \App\Models\BayarModel();
         $this->db = \Config\Database::connect();
-        helper("find");
     }
     public function index()
     {
@@ -49,17 +48,17 @@ class Order extends BaseController
         $data = $this->request->getJSON();
         $data->kode_pesan = random_string();
         try {
+            $this->db->transException(true)->transStart();
             $data->customer_id = session()->get('customer_id');
             $data->status = "Order";
-            $this->db->transException(true)->transStart();
             $this->pesanan->insert($data);
             $data->id = $this->pesanan->getInsertID();
             foreach ($data->detail as $key => $value) {
                 $value->pesanan_id = $data->id;
                 $this->detail->insert($value);
                 $value->id = $this->detail->getInsertID();
-                $barang = $this->barang->where('id', $value->barang_id)->first();
-                $this->barang->update($barang->id, ['stok'=>$barang->stok - $value->qty]);
+                $barang = $this->barang->asObject()->where('id', $value->barang_id)->first();
+                $this->barang->update($value->barang_id, ['stok'=>$barang->stok - $value->qty]);
             }
             $this->db->transComplete();
             return $this->respond($data);

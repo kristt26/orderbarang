@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <div class="form-group pmd-textfield">
                             <label>Tanggal Order</label>
-                            <input type="date" class="form-control" readonly ng-model="model.tanggal_pesan" required disabled>
+                            <input type="date" class="form-control" readonly ng-model="tanggal_pesan" required disabled>
                         </div>
                         <div class="form-group">
                             <label>Barang</label>

@@ -63,8 +63,6 @@
   <link href="<?= base_url() ?>/assets/css/select2.min.css" type="text/css" rel="stylesheet" />
   <link href="<?= base_url() ?>/assets/css/select2-bootstrap.css" type="text/css" rel="stylesheet" />
   <link href="<?= base_url() ?>/assets/css/pmd-select2.css" type="text/css" rel="stylesheet" />
-
-
 </head>
 
 <body class="animsition">
@@ -219,7 +217,7 @@
               </li>
               <li>
                 <a href="<?= base_url('pesanan') ?>">
-                <i class="fa fa-cubes"></i>Pesanan</a>
+                  <i class="fa fa-cubes"></i>Pesanan</a>
               </li>
             <?php endif; ?>
             <?php if (session()->get('role') == "Gudang") : ?>
@@ -298,9 +296,6 @@
   <script src="<?= base_url() ?>/js/services/pesan.services.js"></script>
   <script src="<?= base_url() ?>/js/controllers/admin.controllers.js"></script>
   <script src="<?= base_url() ?>/js/components/components.js"></script>
-  <!-- <script src="<?= base_url() ?>/libs/sweetalert2/dist/sweetalert2.all.min.js"></script> -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
-  <!-- <script src="<?= base_url() ?>/libs/select2/select2.min.js"></script> -->
   <script src="<?= base_url() ?>/libs/angular-ui-select2/src/select2.js"></script>
   <script src="<?= base_url() ?>/libs/angular-datatables/dist/angular-datatables.js"></script>
   <script src="<?= base_url() ?>/libs/angular-locale_id-id.js"></script>

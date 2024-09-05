@@ -217,7 +217,7 @@ function orderController($scope, orderServices, pesan, helperServices) {
     $scope.datas = {};
     $scope.model = {};
     $scope.barang = {};
-    $scope.model.tanggal_pesan = new Date();
+    $scope.tanggal_pesan = new Date();
     orderServices.get().then((res) => {
         $scope.datas = res;
         console.log(res);
@@ -260,16 +260,23 @@ function orderController($scope, orderServices, pesan, helperServices) {
     
     $scope.save = () => {
         pesan.dialog('Yakin ingin?', 'Yes', 'Tidak').then(res => {
-            $scope.model.tanggal_pesan = helperServices.dateToString($scope.model.tanggal_pesan);
+            $scope.model.tanggal_pesan = helperServices.dateToString($scope.tanggal_pesan);
             $scope.model.tagihan = $scope.total;
             if ($scope.model.id) {
                 orderServices.put($scope.model).then(res => {
                     $scope.model = {};
+                    $scope.total = 0;
                     pesan.Success("Berhasil mengubah data");
                 })
             } else {
                 orderServices.post($scope.model).then(res => {
+                    $scope.model.detail.forEach(element => {
+                        var barang = $scope.datas.barang.find(x=>x.id==element.barang_id)
+                        if(barang) barang.stok = barang.stok-element.qty;
+                    });
                     $scope.model = {};
+                    $scope.tanggal_pesan = new Date();
+                    $scope.total = 0;
                     pesan.Success("Berhasil menambah data");
                 })
             }
